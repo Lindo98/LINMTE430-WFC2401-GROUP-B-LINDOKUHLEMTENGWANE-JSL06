@@ -21,9 +21,9 @@ function displayMenuItems(menu) {
             listItem.textContent = item;
             itemList.appendChild(listItem);
 
-           listItem.addEventListener("click", () => {
+            listItem.addEventListener("click", () => {
                 addToOrder(item);
-            }); 
+            });
         });
 
         menuElement.appendChild(categoryHeading);
@@ -31,66 +31,49 @@ function displayMenuItems(menu) {
     });
 }
 
-// Call the function to display the menu items
-displayMenuItems(menu);
-
-
-        // Create an element to represent the category
-
-
-
-        // Set the text content of the category element to the category name
-
-        // Append the category element to the menu container
-
-        // Create an element to represent a list of items
-
-        // Append a list of items element to the menu container
-
-        // Loop through the items in the category and create list items
-
-            // Create a list item element
-
-            // Set the text content of the list item element to the item name
-
-
-
-            
-
 // Callback function for adding an item to the order
-   
-
-
-    function addToOrder(itemName) {            
-
+function addToOrder(itemName) {            
     // Get the order items list and the order total element from the HTML
-
     const orderItemsList = document.getElementById("order-items");
     const orderTotalElement = document.getElementById("order-total");
 
-
     // Create a list item for the order
-
     const listItem = document.createElement("li");  
-    
     // Set the text content of the list item to the item name
-
     listItem.textContent = itemName;
-
     // Append the list item to the order items list
-
     orderItemsList.appendChild(listItem);
 
     // Calculate and update the total price
+    const itemPrice = calculateItemPrice(itemName);
+    const currentTotal = parseFloat(orderTotalElement.textContent);
+    const newTotal = currentTotal + itemPrice; // Update the calculation here
 
     // Update the text content of the order total element with the new total
+    orderTotalElement.textContent = newTotal.toFixed(2); // Update the order total text content
+}
+
+// Function to calculate the price of an item
+function calculateItemPrice(itemName) {
+    const itemPriceMap = {
+        "Garlic Bread": 22,
+        "Bruschetta": 20,
+        "Margherita Pizza": 105,
+        "Spaghetti Carbonara": 150,
+        "Tiramisu": 65,
+        "Cheesecake": 80,
+    };
+
+    return itemPriceMap[itemName] || 0;
 }
 
 // Function to initialize the menu system
 function initMenuSystem(menu) {
     // Call the function to display menu items
+    displayMenuItems(menu);
 }
 
 // Start the menu system by calling the init function
 initMenuSystem(menu);
+
 
