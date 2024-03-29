@@ -43,17 +43,20 @@ main {
 #menu {
     max-width: 60%;
     overflow-y: auto;
+    margin-right: 1em;
+    margin-bottom: 3em;
 }
 
 #order {
     max-width: 35%;
     position: relative; /* Add this for position reference */
     padding-bottom: 4em;
+    margin-bottom: 3em;
 }
 
 #menu h3, #order h2 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 #menu ul, #order ul {
@@ -62,7 +65,8 @@ main {
 }
 
 #menu li, #order li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
+    margin-top: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Add this for the animation */
 }

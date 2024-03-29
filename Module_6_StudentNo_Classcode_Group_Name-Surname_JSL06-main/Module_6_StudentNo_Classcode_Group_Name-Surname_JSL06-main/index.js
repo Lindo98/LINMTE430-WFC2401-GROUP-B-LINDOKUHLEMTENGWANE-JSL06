@@ -2,7 +2,8 @@
 const menu = {
     Starters: ["Garlic Bread", "Bruschetta"],
     MainCourses: ["Margherita Pizza", "Spaghetti Carbonara"],
-    Desserts: ["Tiramisu", "Cheesecake"]
+    Desserts: ["Tiramisu", "Cheesecake"],
+    Drinks: ["Long Island", "Margarita", "Strawberry Daiquiri"]
 };
 
 // Function to display menu items by category
@@ -44,6 +45,12 @@ function addToOrder(itemName) {
     // Append the list item to the order items list
     orderItemsList.appendChild(listItem);
 
+    // I Added an event listener to remove the item when clicked
+    listItem.addEventListener("click", () => {
+        orderItemsList.removeChild(listItem);   // this removes the clicked item from the cart
+        updateTotal();    //This is to update the total price after removing the item
+    });
+
     // Calculate and update the total price
     const itemPrice = calculateItemPrice(itemName);
     const currentTotal = parseFloat(orderTotalElement.textContent);
@@ -62,9 +69,27 @@ function calculateItemPrice(itemName) {
         "Spaghetti Carbonara": 150,
         "Tiramisu": 65,
         "Cheesecake": 80,
+        "Long Island": 100,
+        "Margarita": 75,
+        "Strawberry Daiquiri": 70,
+
     };
 
     return itemPriceMap[itemName] || 0;
+}
+
+// Function to update the total price after removing an item
+function updateTotal() {
+    const orderItemsList = document.getElementById("order-items");
+    const orderTotalElement = document.getElementById("order-total");
+
+    let newTotal = 0;
+    orderItemsList.childNodes.forEach(item => {
+        const itemName = item.textContent;
+        newTotal += calculateItemPrice(itemName);
+    });
+
+    orderTotalElement.textContent = newTotal.toFixed(2);
 }
 
 // Function to initialize the menu system
@@ -75,5 +100,3 @@ function initMenuSystem(menu) {
 
 // Start the menu system by calling the init function
 initMenuSystem(menu);
-
-
